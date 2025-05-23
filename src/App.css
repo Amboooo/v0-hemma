@@ -1,0 +1,46 @@
+.app-container {
+  width: 100%;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tabs button {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.tabs button.active {
+  background-color: #4f46e5;
+  color: white;
+}
+
+main {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  main {
+    background-color: #1e1e1e;
+  }
+
+  .tabs button {
+    background-color: #333;
+    color: #e5e7eb;
+  }
+
+  .tabs button.active {
+    background-color: #4f46e5;
+    color: white;
+  }
+}
