@@ -62,7 +62,12 @@ export default function TaskManager() {
         {activeTab === "tasks" ? (
           <>
             <TaskForm />
-            <TaskList tasks={tasks} onToggleCompletion={toggleTaskCompletion} onDeleteTask={deleteTask} />
+            <TaskList 
+              tasks={tasks.filter(task => !task.completed)} 
+              onToggleCompletion={toggleTaskCompletion} 
+              onDeleteTask={deleteTask} 
+              />
+
           </>
         ) : (
           <TaskStats tasks={tasks} />
