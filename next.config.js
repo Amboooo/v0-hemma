@@ -4,16 +4,10 @@ const withPWA = require('next-pwa')({
   skipWaiting: true,
 })
 
-module.exports = withPWA({
+const nextConfig = withPWA({
   reactStrictMode: true,
-  swcMinify: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
-  },
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
 })
+
+module.exports = nextConfig
