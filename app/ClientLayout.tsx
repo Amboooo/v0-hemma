@@ -35,7 +35,7 @@ export default function ClientLayout({
 
   const handleGenerateBackground = (prompt: string) => {
     const imageUrl = generateBackgroundImage(prompt)
-    setBackgroundImage(imageUrl)
+    setBackgroundImage(imageUrl.url)
     setBackgroundModal(false)
   }
 
