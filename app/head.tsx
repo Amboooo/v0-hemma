@@ -12,5 +12,5 @@ export default function Head() {
       <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       <meta name="mobile-web-app-capable" content="yes" />
     </>
-  )
+  );
 }
