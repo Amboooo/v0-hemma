@@ -28,6 +28,9 @@ export default function Home() {
       )}
 
       <Header />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="icon" href="/icons/icon-192x192.png" />
 
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">Hemmasysslor</h1>
