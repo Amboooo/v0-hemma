@@ -1,81 +1,35 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useAuth } from "@/contexts/AuthContext"
-import { supabase } from '@/lib/supabase'
 import type { AvatarType } from "@/types/task"
 
 export default function ProfilePage() {
-  const { user, loading, signOut } = useAuth()
+  const { householdName, loading, logout } = useAuth()
   const router = useRouter()
   const [fullName, setFullName] = useState("")
   const [preferredAvatar, setPreferredAvatar] = useState<AvatarType>("none")
-  const [saving, setSaving] = useState(false)
   const [profileLoaded, setProfileLoaded] = useState(false)
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!loading && !householdName) {
       router.push("/auth")
+    } else if (householdName) {
+      // Simulera laddning av profil (från localStorage eller dummydata)
+      setFullName(householdName)
+      setPreferredAvatar("none")
+      setProfileLoaded(true)
     }
-  }, [user, loading, router])
+  }, [householdName, loading, router])
 
-  useEffect(() => {
-    const loadProfile = async () => {
-      if (!user) return
-
-      try {
-        const { data, error } = await supabase.from("profiles").select("*").eq("id", user.id).single()
-
-        if (error && error.code !== "PGRST116") {
-          console.error("Error loading profile:", error)
-          return
-        }
-
-        if (data) {
-          setFullName(data.full_name || "")
-          setPreferredAvatar(data.preferred_avatar || "none")
-        }
-
-        setProfileLoaded(true)
-      } catch (error) {
-        console.error("Error loading profile:", error)
-      }
-    }
-
-    if (user) {
-      loadProfile()
-    }
-  }, [user])
-
-  const handleSaveProfile = async (e: React.FormEvent) => {
+  const handleSaveProfile = (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!user) return
-
-    setSaving(true)
-
-    try {
-      const { error } = await supabase.from("profiles").upsert({
-        id: user.id,
-        full_name: fullName,
-        preferred_avatar: preferredAvatar,
-        updated_at: new Date().toISOString(),
-      })
-
-      if (error) {
-        throw error
-      }
-
-      router.push("/")
-    } catch (error) {
-      console.error("Error saving profile:", error)
-    } finally {
-      setSaving(false)
-    }
+    // Här kan du spara till localStorage eller annan enkel lagring om du vill
+    console.log("Sparar profil:", { fullName, preferredAvatar })
+    router.push("/")
   }
 
   if (loading || !profileLoaded) {
@@ -92,26 +46,12 @@ export default function ProfilePage() {
 
       <form onSubmit={handleSaveProfile} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            E-postadress
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={user?.email || ""}
-            disabled
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
-                      bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 opacity-75"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Namn
+          <label htmlFor="householdName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Hushållsnamn
           </label>
           <input
             type="text"
-            id="fullName"
+            id="householdName"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
@@ -156,11 +96,11 @@ export default function ProfilePage() {
         </div>
 
         <div className="flex flex-col space-y-3">
-          <button type="submit" disabled={saving} className="btn btn-primary">
-            {saving ? "Sparar..." : "Spara profil"}
+          <button type="submit" className="btn btn-primary">
+            Spara profil
           </button>
 
-          <button type="button" onClick={() => signOut()} className="btn btn-secondary">
+          <button type="button" onClick={() => logout()} className="btn btn-secondary">
             Logga ut
           </button>
         </div>
