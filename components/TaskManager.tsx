@@ -6,12 +6,7 @@ import TaskForm from "./TaskForm"
 import TaskList from "./TaskList"
 import TaskStats from "./TaskStats"
 import TaskCompletionModal from "./TaskCompletionModal"
-import CalendarView from "../src/components/CalendarView"
-
-
-
-
-
+import CalendarView from "@/components/CalendarView"
 
 export default function TaskManager() {
   const {
