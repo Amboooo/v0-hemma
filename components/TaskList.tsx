@@ -156,19 +156,20 @@ export default function TaskList({ tasks, onToggleCompletion, onDeleteTask }: Ta
                     )}
 
                     {task.helper && task.helper !== "none" && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500 dark:text-gray-400">Med hjälp av:</span>
-                        <div className="w-6 h-6 relative">
-                          <Image
-                            src={getHelperImage(task.helper) || ""}
-                            alt={task.helper}
-                            width={24}
-                            height={24}
-                            className="object-contain"
-                          />
-                        </div>
-                      </div>
-                    )}
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-gray-500 dark:text-gray-400">Med hjälp av:</span>
+                            <div className="w-6 h-6 relative">
+                              <Image
+                                src={getHelperImage(task.helper) ?? "/images/default-avatar.png"}
+                                alt={task.helper}
+                                width={24}
+                                height={24}
+                                className="object-contain"
+                              />
+                            </div>
+                          </div>
+                        )}
+
                   </div>
                 )}
               </div>
