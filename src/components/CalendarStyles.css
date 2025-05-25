@@ -1,0 +1,24 @@
+.react-calendar {
+  border: none;
+  border-radius: 16px;
+  background-color: var(--bg-color, #fff);
+}
+
+.react-calendar__tile {
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.react-calendar__tile--now {
+  background: #fffbdd;
+  border-radius: 8px;
+}
+
+.react-calendar__tile--active {
+  background: #4f46e5;
+  color: white;
+}
+
+.react-calendar__tile:hover {
+  background-color: #e0e7ff;
+}
