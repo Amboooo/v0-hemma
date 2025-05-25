@@ -21,7 +21,7 @@ export default function CustomCalendar() {
   };
 
   return (
-    <div className="p-4 bg-white rounded-2xl shadow-md w-full max-w-md mx-auto my-4">
+    <div className="p-4 bg-black rounded-2xl shadow-md w-full max-w-md mx-auto my-4">
       <div className="flex justify-between mb-4 items-center">
         <button
           className="text-lg"
