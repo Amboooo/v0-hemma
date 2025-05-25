@@ -133,3 +133,4 @@ export function TaskStats({ tasks }) {
     </div>
   )
 }
+const visibleTasks = tasks.filter(task => !task.done);

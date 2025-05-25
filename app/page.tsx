@@ -5,6 +5,7 @@ import Header from "@/components/Header"
 import TaskManager from "@/components/TaskManager"
 import WelcomeAnimation from "@/components/WelcomeAnimation"
 import AuthMiddleware from "./middleware"
+import CustomCalendar from "../components/CustomCalendar";
 
 export default function Home() {
   const [showAnimation, setShowAnimation] = useState(true)
@@ -12,7 +13,7 @@ export default function Home() {
   const handleAnimationComplete = () => {
     setShowAnimation(false)
   }
-
+  
   return (
     <AuthMiddleware>
       {showAnimation && (
@@ -34,6 +35,14 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">Hemmasysslor</h1>
+        <main className="container mx-auto px-4 py-8">
+  <h1 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">Hemmasysslor</h1>
+
+  <CustomCalendar />
+
+  <TaskManager />
+</main>
+
         <TaskManager />
       </main>
     </AuthMiddleware>

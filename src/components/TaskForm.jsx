@@ -26,6 +26,7 @@ export function TaskForm({ onAddTask }) {
     setCategory(CATEGORIES[0])
     setPriority("medium")
   }
+const visibleTasks = tasks.filter(task => !task.done);
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
