@@ -53,3 +53,4 @@ export function TaskList({ tasks, onToggleCompletion, onDeleteTask }) {
     </div>
   )
 }
+const visibleTasks = tasks.filter(task => !task.done);
