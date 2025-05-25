@@ -15,6 +15,9 @@ export default function Header() {
         <Link href="/" className="text-2xl font-bold text-gray-800 dark:text-white">
           Hemmasysslor
         </Link>
+        <Link href="/calendar" className="text-gray-900 dark:text-white hover:underline">
+  Kalender
+</Link>
 
         <div className="flex items-center gap-4">
           <ThemeToggle />
