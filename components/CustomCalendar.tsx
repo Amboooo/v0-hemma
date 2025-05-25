@@ -55,7 +55,7 @@ export default function CustomCalendar() {
               currentDate.getMonth() === new Date().getMonth() &&
               currentDate.getFullYear() === new Date().getFullYear()
                 ? 'bg-blue-500 text-white'
-                : 'bg-gray-100'
+                : 'bg-black-100'
             }`}
           >
             {day}
