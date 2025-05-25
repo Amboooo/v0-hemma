@@ -6,6 +6,7 @@ import TaskForm from "./TaskForm"
 import TaskList from "./TaskList"
 import TaskStats from "./TaskStats"
 import TaskCompletionModal from "./TaskCompletionModal"
+import CalendarView from "./CalendarView"
 
 export default function TaskManager() {
   const {
@@ -19,7 +20,7 @@ export default function TaskManager() {
     completeTaskWithDetails,
   } = useTasks()
 
-  const [activeTab, setActiveTab] = useState<"tasks" | "stats">("tasks")
+  const [activeTab, setActiveTab] = useState<'tasks' | 'stats' | 'calendar'>('tasks')
 
   if (loading) {
     return (
@@ -46,7 +47,7 @@ export default function TaskManager() {
           </button>
           <button
             type="button"
-            className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
+            className={`px-4 py-2 text-sm font-medium ${
               activeTab === "stats"
                 ? "bg-primary-600 text-white"
                 : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -55,22 +56,30 @@ export default function TaskManager() {
           >
             Statistik
           </button>
+          <button
+            type="button"
+            className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
+              activeTab === "calendar"
+                ? "bg-primary-600 text-white"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            }`}
+            onClick={() => setActiveTab("calendar")}
+          >
+            Kalender
+          </button>
         </div>
       </div>
 
-      <div className="card p-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm">
+      <div className="card p-6 rounded-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg">
         {activeTab === "tasks" ? (
           <>
             <TaskForm />
-            <TaskList 
-              tasks={tasks.filter(task => !task.completed)} 
-              onToggleCompletion={toggleTaskCompletion} 
-              onDeleteTask={deleteTask} 
-              />
-
+            <TaskList tasks={tasks} onToggleCompletion={toggleTaskCompletion} onDeleteTask={deleteTask} />
           </>
-        ) : (
+        ) : activeTab === "stats" ? (
           <TaskStats tasks={tasks} />
+        ) : (
+          <CalendarView tasks={tasks} />
         )}
       </div>
 

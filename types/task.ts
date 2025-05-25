@@ -19,6 +19,11 @@ export interface Task {
   completedBy?: AvatarType
   helper?: HelperType
   completedByName?: string
+  updatedAt?: string // ISO-datumsträng
+  dueDate?: string // ISO-datumsträng, för att kopplas till kalendern
+
 }
+
+
 
 export const TASK_CATEGORIES: TaskCategory[] = ["Städning", "Matlagning", "Tvätt", "Trädgård", "Reparation", "Övrigt"]
